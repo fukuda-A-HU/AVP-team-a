@@ -17,9 +17,7 @@ public class BonsaiManager
     private readonly GameObject edgePrefab;
     private readonly TextMeshPro descriptionText;
     public ObservableList<HistoryItem> histories = new ObservableList<HistoryItem>();
-
     public ObservableList<NodeView> nodeViews = new ObservableList<NodeView>();
-
     private ObservableList<EdgeView> edgeViews = new ObservableList<EdgeView>();
     private Vector3 rootPosition;
 
@@ -33,7 +31,7 @@ public class BonsaiManager
 
     public async UniTask Initialize()
     {
-        rootPosition = bonsaiRoot.position;
+        rootPosition = bonsaiRoot.localPosition;
 
         histories.ObserveAdd().Subscribe(async e =>
         {
@@ -80,7 +78,7 @@ public class BonsaiManager
             var nodeView = await UnityEngine.Object.InstantiateAsync(nodePrefab, bonsaiRoot, rootPosition, Quaternion.identity);
             var node = nodeView[0].GetComponent<NodeView>();
 
-            node.Set(e.Value, parentHistory, parentNode, descriptionText);
+            node.Set(e.Value, parentHistory, parentNode, descriptionText, bonsaiRoot);
 
             var edgeView = await UnityEngine.Object.InstantiateAsync(edgePrefab, bonsaiRoot, rootPosition, Quaternion.identity);
             var edge = edgeView[0].GetComponent<EdgeView>();
