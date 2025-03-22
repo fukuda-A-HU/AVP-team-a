@@ -27,12 +27,7 @@ public class CylinderBetweenPoints : MonoBehaviour
         // 既存のシリンダーがあれば削除
         if (currentCylinder != null)
         {
-#if UNITY_EDITOR
-            // エディタモードではDestroyImmediateを使用
-            DestroyImmediate(currentCylinder);
-#else
             Destroy(currentCylinder);
-#endif
         }
 
         // 2点間の距離を計算
@@ -53,23 +48,13 @@ public class CylinderBetweenPoints : MonoBehaviour
         // スケールを調整
         Vector3 newScale = new Vector3(cylinderWidth, distance / 2f, cylinderWidth);
         currentCylinder.transform.localScale = newScale;
-
-#if UNITY_EDITOR
-        // エディタモードではシーンをダーティにする（保存が必要な状態に）
-        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(
-            UnityEngine.SceneManagement.SceneManager.GetActiveScene());
-#endif
     }
 
     void OnDestroy()
     {
         if (currentCylinder != null)
         {
-#if UNITY_EDITOR
-            DestroyImmediate(currentCylinder);
-#else
             Destroy(currentCylinder);
-#endif
         }
     }
 }
