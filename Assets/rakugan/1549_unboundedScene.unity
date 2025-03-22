@@ -3037,7 +3037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c96542726335b4ceabc0a440cf8ef69a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LevelName: SampleScene
+  m_LevelName: 1549_baseScene
 --- !u!114 &940116887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8412,6 +8412,7 @@ MonoBehaviour:
   m_RepeatRate: 0.1
   m_TrackedDeviceDragThresholdMultiplier: 2
   m_TrackedScrollDeltaMultiplier: 5
+  m_BypassUIToolkitEvents: 0
   m_ActiveInputMode: 1
   m_EnableXRInput: 1
   m_EnableMouseInput: 1
