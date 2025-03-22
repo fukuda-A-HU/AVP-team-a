@@ -12,6 +12,7 @@ public class NodeView : MonoBehaviour
     [SerializeField] private float verticalOffset = 1f;
     [SerializeField] private float randomRange = 0.02f;
     [SerializeField] private int maxAttempts = 10;
+    [SerializeField] private GameObject flower;
     private TextMeshPro textMeshPro;
 
     public UnityEvent onSelect = new UnityEvent();
@@ -25,6 +26,16 @@ public class NodeView : MonoBehaviour
                 textMeshPro.text = history.sha;
             }
         });
+
+        // flowerをランダムに表示
+        if (UnityEngine.Random.Range(0, 2) == 0)
+        {
+            flower.SetActive(true);
+        }
+        else
+        {
+            flower.SetActive(false);
+        }
     }
 
     public void Set(HistoryItem _history, HistoryItem _parentHistory, NodeView _parentNode, TextMeshPro _textMeshPro, Transform parentTransform)
@@ -43,6 +54,7 @@ public class NodeView : MonoBehaviour
         if (parentNode == null)
         {
             transform.localPosition = new Vector3(0, 0, 0);
+            flower.SetActive(false);
             return;
         }
 
