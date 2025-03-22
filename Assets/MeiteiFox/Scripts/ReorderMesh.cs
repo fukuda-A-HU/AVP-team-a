@@ -1,3 +1,4 @@
+/*
 using UnityEngine;
 
 public class ReorderMesh
@@ -36,6 +37,7 @@ public class ReorderMesh
         newMesh.RecalculateBounds(); // 必要に応じてバウンディングボックスを再計算
 
         // **メッシュを更新**
-        return newMesh;a
+        return newMesh;
     }
 }
+*/

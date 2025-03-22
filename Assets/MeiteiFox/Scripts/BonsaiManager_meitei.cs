@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BonsaiManager : MonoBehaviour
+public class BonsaiManager_meitei : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
