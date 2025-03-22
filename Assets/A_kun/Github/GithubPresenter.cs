@@ -3,8 +3,9 @@ using VContainer;
 using VContainer.Unity;
 
 public class GithubPresenter : IStartable
-{    public readonly GithubView view;
+{
     public readonly GithubManager manager;
+    public readonly GithubView view;
 
     [Inject]
     public GithubPresenter(GithubManager manager, GithubView view)
@@ -15,10 +16,11 @@ public class GithubPresenter : IStartable
 
     public void Start()
     {
-        view.button.onClick.AddListener(() =>
+        view.button.onClick.AddListener(async () =>
         {
             manager.SampleMethod();
-            manager.Test("fukuda-A-HU", "AVP-team-a");
+            await manager.Test("fukuda-A-HU", "AVP-team-a");
+            var history = await manager.GetAllBranchesHistory("fukuda-A-HU", "AVP-team-a");
         });
     }
 }

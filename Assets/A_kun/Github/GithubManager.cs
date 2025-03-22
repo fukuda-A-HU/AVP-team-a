@@ -1,6 +1,8 @@
 using UnityEngine;
 using VContainer;
 using System;
+using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 
 public class GithubManager
 {
@@ -17,7 +19,7 @@ public class GithubManager
         Debug.Log("SampleMethod");
     }
 
-    public async void Test(string owner, string repo)
+    public async UniTask Test(string owner, string repo)
     {
         try
         {
@@ -38,5 +40,10 @@ public class GithubManager
         {
             Debug.LogError($"GitHub API Error: {e.Message}");
         }
+    }
+
+    public async UniTask<List<HistoryItem>> GetAllBranchesHistory(string owner, string repo)
+    {
+        return await apiClient.GetAllBranchesHistoryAsync(owner, repo);
     }
 }
