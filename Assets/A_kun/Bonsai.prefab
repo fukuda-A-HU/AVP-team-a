@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReloadButton: {fileID: 0}
+  descriptionText: {fileID: 0}
   onReload:
     m_PersistentCalls:
       m_Calls: []
