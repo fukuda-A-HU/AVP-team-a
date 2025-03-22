@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2599974096534357807}
-  - component: {fileID: 6390693709088357577}
-  - component: {fileID: 8387542756781848247}
+  - component: {fileID: 1673483430779058119}
+  - component: {fileID: 7336411160982909339}
   m_Layer: 0
   m_Name: Github
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6390693709088357577
+--- !u!114 &1673483430779058119
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,15 +42,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7268786323315832456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f040d87f40da4430d980b32add8b2929, type: 3}
+  m_Script: {fileID: 11500000, guid: b338a2c2b67754b69865dcc325416984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
-  view: {fileID: 8387542756781848247}
---- !u!114 &8387542756781848247
+  gameView: {fileID: 7336411160982909339}
+--- !u!114 &7336411160982909339
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,7 +59,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7268786323315832456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 835078827542246e0815234910c93b5a, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d1af6230348a461f8a3753d0fbb2f83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 0}
+  ReloadButton: {fileID: 0}
+  descriptionText: {fileID: 0}
+  onReload:
+    m_PersistentCalls:
+      m_Calls: []
+  edgePrefab: {fileID: 4604842896085734150, guid: 0d8ce52c6802742d2bfb1c9ebdcf051e, type: 3}
+  nodePrefab: {fileID: 5708650379856357789, guid: 2a876307e664046838b4a582345c651e, type: 3}
