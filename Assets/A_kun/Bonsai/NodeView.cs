@@ -11,7 +11,6 @@ public class NodeView : MonoBehaviour
     [SerializeField] private float verticalOffset = 0.5f;
     [SerializeField] private float randomRange = 0.5f;
     [SerializeField] private int maxAttempts = 10;
-    private Transform bonsaiRoot;
     private TextMeshPro textMeshPro;
 
     public UnityEvent onSelect = new UnityEvent();
@@ -27,12 +26,11 @@ public class NodeView : MonoBehaviour
         });
     }
 
-    public void Set(HistoryItem _history, HistoryItem _parentHistory, NodeView _parentNode, Transform _bonsaiRoot, TextMeshPro _textMeshPro)
+    public void Set(HistoryItem _history, HistoryItem _parentHistory, NodeView _parentNode, TextMeshPro _textMeshPro)
     {
         history = _history;
         parentHistory = _parentHistory;
         parentNode = _parentNode;
-        bonsaiRoot = _bonsaiRoot;
         textMeshPro = _textMeshPro;
 
         int attempts = 0;
@@ -43,7 +41,6 @@ public class NodeView : MonoBehaviour
 
         if (parentNode == null)
         {
-            transform.SetParent(bonsaiRoot);
             return;
         }
 

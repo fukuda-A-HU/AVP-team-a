@@ -77,12 +77,12 @@ public class BonsaiManager
                 Debug.Log("親の履歴が見つかりませんでした。");
             }
 
-            var nodeView = await UnityEngine.Object.InstantiateAsync(nodePrefab, rootPosition, Quaternion.identity);
+            var nodeView = await UnityEngine.Object.InstantiateAsync(nodePrefab, bonsaiRoot, rootPosition, Quaternion.identity);
             var node = nodeView[0].GetComponent<NodeView>();
 
-            node.Set(e.Value, parentHistory, parentNode, bonsaiRoot, descriptionText);
+            node.Set(e.Value, parentHistory, parentNode, descriptionText);
 
-            var edgeView = await UnityEngine.Object.InstantiateAsync(edgePrefab, rootPosition, Quaternion.identity);
+            var edgeView = await UnityEngine.Object.InstantiateAsync(edgePrefab, bonsaiRoot, rootPosition, Quaternion.identity);
             var edge = edgeView[0].GetComponent<EdgeView>();
 
             edge.Set(node, parentNode);
