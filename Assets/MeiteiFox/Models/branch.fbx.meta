@@ -3,7 +3,17 @@ guid: fbc2b165651a04013b78c09cb9aed1fe
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eda
+    second: {fileID: 2100000, guid: b6e901b9ef25547929821904c8cc6f69, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u767D"
+    second: {fileID: 2100000, guid: 81d79a05fc6a44295ab82542d5a16848, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
