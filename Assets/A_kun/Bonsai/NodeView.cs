@@ -8,8 +8,9 @@ public class NodeView : MonoBehaviour
     [SerializeField] private HistoryItem history;
     [SerializeField] private HistoryItem parentHistory;
     [SerializeField] private NodeView parentNode;
-    [SerializeField] private float verticalOffset = 0.5f;
-    [SerializeField] private float randomRange = 0.5f;
+    [SerializeField] private Collider colider;
+    [SerializeField] private float verticalOffset = 1f;
+    [SerializeField] private float randomRange = 0.02f;
     [SerializeField] private int maxAttempts = 10;
     private TextMeshPro textMeshPro;
 
@@ -26,7 +27,7 @@ public class NodeView : MonoBehaviour
         });
     }
 
-    public void Set(HistoryItem _history, HistoryItem _parentHistory, NodeView _parentNode, TextMeshPro _textMeshPro)
+    public void Set(HistoryItem _history, HistoryItem _parentHistory, NodeView _parentNode, TextMeshPro _textMeshPro, Transform parentTransform)
     {
         history = _history;
         parentHistory = _parentHistory;
@@ -41,6 +42,7 @@ public class NodeView : MonoBehaviour
 
         if (parentNode == null)
         {
+            transform.localPosition = new Vector3(0, 0, 0);
             return;
         }
 
@@ -54,10 +56,15 @@ public class NodeView : MonoBehaviour
                 verticalOffset,
                 UnityEngine.Random.Range(-randomRange, randomRange)
             );
-            Vector3 newPosition = parentNode.transform.position + randomOffset;
+
+            // randomOffsetをparentTransformのスケールに合わせる
+            Debug.Log("parentTransform.localScale: " + parentTransform.localScale);
+            randomOffset.Scale(parentTransform.localScale);
+            // Vector3 newPosition = parentNode.transform.localPosition + randomOffset;
+            Vector3 newPosition = randomOffset;
 
             // コライダーの衝突をチェック
-            Collider[] colliders = Physics.OverlapBox(newPosition, GetComponent<Collider>().bounds.size / 2);
+            Collider[] colliders = Physics.OverlapBox(transform.TransformPoint(newPosition), colider.bounds.size / 2);
             bool hasCollision = false;
 
             foreach (Collider col in colliders)
@@ -65,18 +72,21 @@ public class NodeView : MonoBehaviour
                 if (col.gameObject != gameObject && col.gameObject.GetComponent<NodeView>() != null)
                 {
                     hasCollision = true;
+                    Debug.Log("hasCollision: " + history.sha + " " + col.gameObject.name);
                     break;
                 }
             }
 
             if (!hasCollision)
             {
-                transform.position = newPosition;
+                transform.localPosition = newPosition;
                 positionFound = true;
             }
 
             attempts++;
         }
+
+        Debug.Log($"NodeView.Set() attempts: {attempts}, {history.sha}, {transform.localPosition}");
 
         if (!positionFound)
         {

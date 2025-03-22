@@ -31,7 +31,7 @@ public class GamePresenter : IStartable
         gameView.onReload.AddListener(async () =>
         {
             Debug.Log("onReload");
-            var histories = await githubManager.GetAllBranchesHistory("fukuda-A-HU", "ELF-SR2");
+            var histories = await githubManager.GetAllBranchesHistory("fukuda-A-HU", "BonsaiTest");
             Debug.Log($"histories: {histories.Count}");
             bonsaiManager.histories.Clear();
             foreach (var history in histories)
