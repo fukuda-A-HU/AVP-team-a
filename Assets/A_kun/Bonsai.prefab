@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8944534930738242593}
+  - component: {fileID: 8667377134924480126}
+  - component: {fileID: 5128061360437018535}
   m_Layer: 0
   m_Name: Bonsai
   m_TagString: Untagged
@@ -31,3 +33,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8667377134924480126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7909228107759916839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b338a2c2b67754b69865dcc325416984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentReference:
+    TypeName: 
+  autoRun: 1
+  autoInjectGameObjects: []
+  gameView: {fileID: 5128061360437018535}
+--- !u!114 &5128061360437018535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7909228107759916839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1af6230348a461f8a3753d0fbb2f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ReloadButton: {fileID: 0}
+  onReload:
+    m_PersistentCalls:
+      m_Calls: []
+  edgePrefab: {fileID: 4604842896085734150, guid: 0d8ce52c6802742d2bfb1c9ebdcf051e, type: 3}
+  nodePrefab: {fileID: 5708650379856357789, guid: 2a876307e664046838b4a582345c651e, type: 3}
