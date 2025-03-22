@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
-
+using UnityEngine.Events;
+using TMPro;
 [RequireComponent(typeof(Collider))]
 public class NodeView : MonoBehaviour
 {
@@ -11,27 +12,37 @@ public class NodeView : MonoBehaviour
     [SerializeField] private float randomRange = 0.5f;
     [SerializeField] private int maxAttempts = 10;
     private Transform bonsaiRoot;
+    private TextMeshPro textMeshPro;
 
-    public void Set(HistoryItem _history, HistoryItem _parentHistory, NodeView _parentNode, Transform _bonsaiRoot)
+    public UnityEvent onSelect = new UnityEvent();
+
+    public void Start()
+    {
+        onSelect.AddListener(() =>
+        {
+            if (textMeshPro != null)
+            {
+                textMeshPro.text = history.sha;
+            }
+        });
+    }
+
+    public void Set(HistoryItem _history, HistoryItem _parentHistory, NodeView _parentNode, Transform _bonsaiRoot, TextMeshPro _textMeshPro)
     {
         history = _history;
         parentHistory = _parentHistory;
         parentNode = _parentNode;
         bonsaiRoot = _bonsaiRoot;
+        textMeshPro = _textMeshPro;
+
         int attempts = 0;
         bool positionFound = false;
-
-        // nullである変数を確認
-        Debug.Log($"history {history} parentHistory {parentHistory} parentNode {parentNode} bonsaiRoot {bonsaiRoot}");
-
-
 
         // オブジェクトの名前を履歴のshaにする
         name = history.sha;
 
         if (parentNode == null)
         {
-            Debug.LogWarning("parentNode is null");
             transform.SetParent(bonsaiRoot);
             return;
         }

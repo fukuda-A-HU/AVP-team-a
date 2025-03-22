@@ -8,13 +8,14 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System;
+using TMPro;
 
 public class BonsaiManager
 {
     public readonly Transform bonsaiRoot;
     public readonly GameObject nodePrefab;
-    private GameObject edgePrefab;
-
+    private readonly GameObject edgePrefab;
+    private readonly TextMeshPro descriptionText;
     public ObservableList<HistoryItem> histories = new ObservableList<HistoryItem>();
 
     public ObservableList<NodeView> nodeViews = new ObservableList<NodeView>();
@@ -27,6 +28,7 @@ public class BonsaiManager
         this.bonsaiRoot = gameView.transform;
         this.nodePrefab = gameView.nodePrefab;
         this.edgePrefab = gameView.edgePrefab;
+        this.descriptionText = gameView.descriptionText;
     }
 
     public async UniTask Initialize()
@@ -78,7 +80,7 @@ public class BonsaiManager
             var nodeView = await UnityEngine.Object.InstantiateAsync(nodePrefab, rootPosition, Quaternion.identity);
             var node = nodeView[0].GetComponent<NodeView>();
 
-            node.Set(e.Value, parentHistory, parentNode, bonsaiRoot);
+            node.Set(e.Value, parentHistory, parentNode, bonsaiRoot, descriptionText);
 
             var edgeView = await UnityEngine.Object.InstantiateAsync(edgePrefab, rootPosition, Quaternion.identity);
             var edge = edgeView[0].GetComponent<EdgeView>();
