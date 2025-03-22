@@ -2,15 +2,12 @@ using UnityEngine;
 
 public class EdgeView : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    private NodeView prevNode;
+    private NodeView nextNode;
 
-    // Update is called once per frame
-    void Update()
+    public void Set(NodeView prevNode, NodeView nextNode)
     {
-        
+        this.prevNode = prevNode;
+        this.nextNode = nextNode;
     }
 }

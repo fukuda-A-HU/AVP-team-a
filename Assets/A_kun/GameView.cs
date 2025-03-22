@@ -1,10 +1,9 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class BonsaiView : MonoBehaviour
+public class GameView : MonoBehaviour
 {
-    public GameObject bonsaiRoot;
-
+    public Button ReloadButton;
     public GameObject edgePrefab;
-
     public GameObject nodePrefab;
 }
