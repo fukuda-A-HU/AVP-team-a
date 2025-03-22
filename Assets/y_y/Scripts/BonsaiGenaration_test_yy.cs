@@ -6,13 +6,13 @@ public class BonsaiGenaration_test_yy : MonoBehaviour
 
     void Start()
     {
-        // 木の構造を定義（各距離が1〜2程度になるように設定）
-        Vector3 root = new Vector3(0, 0, 0);         // 根
-        Vector3 trunkEnd = new Vector3(0, 1.5f, 0);  // 幹の先端 (距離: 1.5)
-        Vector3 branch1End = new Vector3(1, 2.5f, 0); // 枝1の先端 (距離: ~1.4)
-        Vector3 branch2End = new Vector3(-1, 2.5f, 0); // 枝2の先端 (距離: ~1.4)
-        Vector3 branch3End = new Vector3(0, 2.5f, 1); // 枝3の先端 (距離: ~1.4)
-        Vector3 branch4End = new Vector3(0, 2.5f, -1); // 枝4の先端 (距離: ~1.4)
+        // 木の構造を定義（各距離が0.5〜1程度になるように設定）
+        Vector3 root = new Vector3(0, 0, 0);          // 根
+        Vector3 trunkEnd = new Vector3(0, 0.7f, 0);   // 幹の先端 (距離: 0.7)
+        Vector3 branch1End = new Vector3(0.5f, 1.2f, 0);  // 枝1の先端 (距離: ~0.71)
+        Vector3 branch2End = new Vector3(-0.5f, 1.2f, 0); // 枝2の先端 (距離: ~0.71)
+        Vector3 branch3End = new Vector3(0, 1.2f, 0.5f);  // 枝3の先端 (距離: ~0.71)
+        Vector3 branch4End = new Vector3(0, 1.2f, -0.5f); // 枝4の先端 (距離: ~0.71)
 
         // 幹を生成
         CreateCylinderBetweenPoints(root, trunkEnd);
@@ -41,8 +41,8 @@ public class BonsaiGenaration_test_yy : MonoBehaviour
         // 回転を設定（シリンダーのY軸を方向に合わせる）
         cylinder.transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
 
-        // スケールを調整（太さ0.1f、高さを距離に基づいて設定）
-        Vector3 newScale = new Vector3(0.1f, distance / 2f, 0.1f);
+        // スケールを調整（太さ1、高さを距離に基づいて設定）
+        Vector3 newScale = new Vector3(1.0f, distance / 2f, 1.0f);
         cylinder.transform.localScale = newScale;
     }
 }
