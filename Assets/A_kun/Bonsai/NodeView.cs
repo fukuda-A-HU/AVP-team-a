@@ -8,7 +8,7 @@ public class NodeView : MonoBehaviour
     [SerializeField] private HistoryItem parentHistory;
     [SerializeField] private NodeView parentNode;
     [SerializeField] private float verticalOffset = 0.5f;
-    [SerializeField] private float randomRange = 1f;
+    [SerializeField] private float randomRange = 0.5f;
     [SerializeField] private int maxAttempts = 10;
     private Transform bonsaiRoot;
 
@@ -20,6 +20,9 @@ public class NodeView : MonoBehaviour
         bonsaiRoot = _bonsaiRoot;
         int attempts = 0;
         bool positionFound = false;
+
+        // nullである変数を確認
+        Debug.Log($"history {history} parentHistory {parentHistory} parentNode {parentNode} bonsaiRoot {bonsaiRoot}");
 
 
 

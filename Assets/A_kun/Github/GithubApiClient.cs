@@ -4,12 +4,18 @@ using System.Net.Http;
 using System.Text;
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
+using UnityEngine;
 
 public class GitHubApiClient
 {
-    private const string BASE_URL = "https://github-api-a-kun-e5531c2ca510.herokuapp.com"; // FastAPIサーバーのURL
+    private string BASE_URL = "https://github-api-a-kun-e5531c2ca510.herokuapp.com"; // FastAPIサーバーのURL
+    private string ALTERNATE_BASE_URL = "http://localhost:8000"; // FastAPIサーバーのURL
     private static GitHubApiClient instance;
     private readonly HttpClient httpClient;
+    private const int MAX_RETRIES = 3;
+    private const float RETRY_DELAY = 1f; // 秒
+
+    private bool isUsingAlternateBaseUrl = false;
 
     public static GitHubApiClient Instance
     {
@@ -20,12 +26,18 @@ public class GitHubApiClient
                 instance = new GitHubApiClient();
             }
             return instance;
+            
         }
     }
 
     private GitHubApiClient()
     {
         httpClient = new HttpClient();
+
+        if (isUsingAlternateBaseUrl)
+        {
+            BASE_URL = ALTERNATE_BASE_URL;
+        }
     }
 
     public async UniTask<List<CommitInfo>> GetCommitsAsync(string owner, string repo, string branch = "main")
@@ -54,25 +66,36 @@ public class GitHubApiClient
 
     private async UniTask<T> MakeRequestAsync<T>(string url)
     {
-        try
+        int retryCount = 0;
+        while (retryCount < MAX_RETRIES)
         {
-            var response = await httpClient.GetAsync(url);
-            response.EnsureSuccessStatusCode();
-            
-            var content = await response.Content.ReadAsStringAsync();
             try
             {
-                return JsonConvert.DeserializeObject<T>(content);
+                var response = await httpClient.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+                
+                var content = await response.Content.ReadAsStringAsync();
+                try
+                {
+                    return JsonConvert.DeserializeObject<T>(content);
+                }
+                catch (Exception e)
+                {
+                    throw new Exception($"JSON解析エラー: {e.Message}", e);
+                }
             }
             catch (Exception e)
             {
-                throw new Exception($"JSON解析エラー: {e.Message}", e);
+                retryCount++;
+                if (retryCount >= MAX_RETRIES)
+                {
+                    throw new Exception($"リクエストエラー (試行回数: {retryCount}): {e.Message}", e);
+                }
+                Debug.LogWarning($"リクエスト失敗 (試行回数: {retryCount}/{MAX_RETRIES})。{RETRY_DELAY}秒後に再試行します。");
+                await UniTask.Delay(TimeSpan.FromSeconds(RETRY_DELAY));
             }
         }
-        catch (Exception e)
-        {
-            throw new Exception($"リクエストエラー: {e.Message}", e);
-        }
+        throw new Exception("予期せぬエラーが発生しました。");
     }
 }
 

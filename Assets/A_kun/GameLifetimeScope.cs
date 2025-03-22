@@ -15,8 +15,6 @@ public class GameLifetimeScope : LifetimeScope
 
         builder.UseEntryPoints(Lifetime.Singleton, entryPoints =>
         {
-            // entryPoints.Add<GithubPresenter>();
-            // entryPoints.Add<BonsaiPresenter>();
             entryPoints.Add<GamePresenter>();
         });
     }
