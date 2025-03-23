@@ -18,7 +18,7 @@ public class NodeView : MonoBehaviour
 
     public UnityEvent onSelect = new UnityEvent();
 
-    public void Start()
+    public async UniTask Start()
     {
         onSelect.AddListener(() =>
         {
@@ -33,6 +33,8 @@ public class NodeView : MonoBehaviour
         // flowerをランダムに表示
         if (UnityEngine.Random.Range(0, 2) == 0)
         {
+            flower.SetActive(false);
+            await UniTask.Delay(2600);
             flower.SetActive(true);
         }
         else
