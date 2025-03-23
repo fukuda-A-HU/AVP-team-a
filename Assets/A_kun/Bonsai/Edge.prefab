@@ -53,6 +53,7 @@ MonoBehaviour:
     value: 0.5
   node: {fileID: 0}
   parentNode: {fileID: 0}
+  branchExpander: {fileID: 8711057954104548944}
 --- !u!1 &8622988306170966565
 GameObject:
   m_ObjectHideFlags: 0

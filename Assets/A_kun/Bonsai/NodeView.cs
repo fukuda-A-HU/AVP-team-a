@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using UnityEngine.Events;
 using TMPro;
+using Cysharp.Threading.Tasks;
 [RequireComponent(typeof(Collider))]
 public class NodeView : MonoBehaviour
 {
@@ -40,7 +41,7 @@ public class NodeView : MonoBehaviour
         }
     }
 
-    public void Set(HistoryItem _history, HistoryItem _parentHistory, NodeView _parentNode, TextMeshPro _textMeshPro, Transform parentTransform)
+    public async UniTask Set(HistoryItem _history, HistoryItem _parentHistory, NodeView _parentNode, TextMeshPro _textMeshPro, Transform parentTransform)
     {
         history = _history;
         parentHistory = _parentHistory;

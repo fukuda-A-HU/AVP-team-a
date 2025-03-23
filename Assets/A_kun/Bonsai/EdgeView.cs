@@ -1,5 +1,6 @@
 using R3;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public class EdgeView : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class EdgeView : MonoBehaviour
 
     [SerializeField] private NodeView node;
     [SerializeField] private NodeView parentNode;
+    [SerializeField] private BranchExpander branchExpander;
 
     public void Start()
     {
@@ -22,7 +24,7 @@ public class EdgeView : MonoBehaviour
         });
     }
 
-    public void Set(NodeView start, NodeView end)
+    public async UniTask Set(NodeView start, NodeView end)
     {
         node = start;
         parentNode = end;
@@ -35,10 +37,10 @@ public class EdgeView : MonoBehaviour
 
         transform.SetParent(parentNode.transform);
 
-        UpdateEdge();
+        await UpdateEdge();
     }
 
-    private void UpdateEdge()
+    private async UniTask UpdateEdge()
     {
         var startPos = node.transform.localPosition;
         var endPos = new Vector3(0, 0, 0);
@@ -52,7 +54,7 @@ public class EdgeView : MonoBehaviour
         );
 
         transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
-        
-        
+
+        await branchExpander.Expand(2f);
     }
 }

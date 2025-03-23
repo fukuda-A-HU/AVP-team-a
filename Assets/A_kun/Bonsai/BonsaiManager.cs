@@ -83,7 +83,7 @@ public class BonsaiManager
             var edgeView = await UnityEngine.Object.InstantiateAsync(edgePrefab, bonsaiRoot, rootPosition, Quaternion.identity);
             var edge = edgeView[0].GetComponent<EdgeView>();
 
-            edge.Set(node, parentNode);
+            await edge.Set(node, parentNode);
 
             nodeViews.Add(node);
             edgeViews.Add(edge);
