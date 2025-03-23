@@ -46,7 +46,7 @@ namespace PolySpatial.Template
                 {
                     if (primaryTouchData.targetObject != null)
                     {
-                        if(primaryTouchData.targetObject.TryGetComponent(out BoundedObjectBehavior boundedObject))
+                        if (primaryTouchData.targetObject.TryGetComponent(out BoundedObjectBehavior boundedObject))
                         {
                             m_SelectedObject = boundedObject;
                             m_SelectedObject.Select(true);
@@ -81,6 +81,10 @@ namespace PolySpatial.Template
 
                 if (touchPhase == TouchPhase.Ended || touchPhase == TouchPhase.Canceled)
                 {
+                    if (m_SelectedObject.TryGetComponent(out NodeView nodeView))
+                    {
+                        nodeView.onSelect.Invoke();
+                    }
                     if (m_SelectedObject != null)
                     {
                         m_SelectedObject.Select(false);

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: VolumeCamera_Bounded_free
   m_EditorClassIdentifier: 
   m_Mode: 0
-  m_OutputDimensions: {x: 0.8, y: 0.8, z: 0.8}
+  m_OutputDimensions: {x: 0.6, y: 1.2, z: 0.6}
   m_WindowResizeLimit: 2
   m_MinWindowSize: {x: 0, y: 0, z: 0}
   m_MaxWindowSize: {x: 5, y: 5, z: 5}
   m_WorldAlignment: 1
-  m_IsUniformScale: 1
+  m_IsUniformScale: 0

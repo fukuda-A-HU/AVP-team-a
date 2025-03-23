@@ -17,6 +17,14 @@ namespace PolySpatial.Template
         public MeshRenderer MeshRenderer => m_MeshRenderer;
         public event Action<string, MeshRenderer, int> WasPressed;
 
+        public NodeView m_NodeView;
+
+        void Start()
+        {
+            this.gameObject.TryGetComponent<NodeView>(out m_NodeView);
+        }
+
+
         void OnEnable()
         {
             m_MeshRenderer = GetComponent<MeshRenderer>();
@@ -32,6 +40,10 @@ namespace PolySpatial.Template
         {
             m_PressEnd.Invoke();
             base.PressEnd();
+            if (m_NodeView != null)
+            {
+                m_NodeView.onSelect.Invoke();
+            }
             WasPressed?.Invoke(m_ButtonText, m_MeshRenderer, m_ButtonIndex);
         }
     }
