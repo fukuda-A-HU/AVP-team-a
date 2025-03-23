@@ -2281,7 +2281,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "This is description\u3042"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26f6bb623b62647b5ae74131538ede6a, type: 2}
   m_sharedMaterial: {fileID: -2685144772717371919, guid: 26f6bb623b62647b5ae74131538ede6a, type: 2}
@@ -2346,7 +2346,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -21.903101, z: 14.673294, w: -22.990158}
+  m_margin: {x: 0, y: -21.903101, z: 1.7224331, w: -22.990158}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
