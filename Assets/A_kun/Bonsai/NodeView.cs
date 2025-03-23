@@ -23,7 +23,9 @@ public class NodeView : MonoBehaviour
         {
             if (textMeshPro != null)
             {
-                textMeshPro.text = history.sha;
+                textMeshPro.text = $"Date: {history.date}\n" +
+                     $"Title: {history.title}\n" +
+                     $"Author: {history.author}\n";
             }
         });
 
