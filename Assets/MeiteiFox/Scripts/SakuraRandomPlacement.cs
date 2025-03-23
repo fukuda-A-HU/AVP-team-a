@@ -57,7 +57,7 @@ public GameObject[] objectPrefabs; // 配置するオブジェクトのプレハ
                         baseRotation.eulerAngles.y + Random.Range(-rotationVariation, rotationVariation),
                         baseRotation.eulerAngles.z + Random.Range(-rotationVariation, rotationVariation)
                     );
-                    placedObjects[i] = Instantiate(randomPrefab, randomPosition, randomRotation);
+                    placedObjects[i] = Instantiate(randomPrefab, randomPosition, randomRotation, transform);
                 }
             }
         }
