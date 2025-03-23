@@ -1,5 +1,6 @@
-/*
 using UnityEngine;
+using System.Linq;
+using System.Collections.Generic;
 
 public class ReorderMesh
 {
@@ -9,7 +10,7 @@ public class ReorderMesh
         Vector3[] originalNormals = mesh.normals;
         int[] originalTriangles = mesh.triangles;
         var sortedVertices = originalVertices
-            .Select((v, i) => new { Index = i, Position = v, Distance = v.sqrMagnitude })
+            .Select((v, i) => new { Index = i, Position = v, Distance = Vector3.Distance(v, transform.position) })
             .OrderBy(entry => entry.Distance)
             .ToList();
 
@@ -40,4 +41,3 @@ public class ReorderMesh
         return newMesh;
     }
 }
-*/
